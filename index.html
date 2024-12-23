@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Sopa de Palavras Ciencias Integradas</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      text-align: center;
+    }
+    #wordSearchGrid {
+      display: grid;
+      grid-template-columns: repeat(8, 40px);
+      grid-template-rows: repeat(7, 40px);
+      gap: 5px;
+      margin: 20px auto;
+      max-width: 340px;
+    }
+    .cell {
+      width: 40px;
+      height: 40px;
+      border: 1px solid #ddd;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      font-size: 16px;
+      cursor: pointer;
+    }
+    .cell.highlight {
+      background-color: #90ee90;
+    }
+    #wordList {
+      margin-top: 20px;
+    }
+  </style>
+</head>
+<body>
+  <h1>Sopa de Letras</h1>
+  <div id="wordSearchGrid"></div>
+  <div id="wordList">
+    <h2>Encontre os Planetas do Sistema solar:</h2>
+    <ul id="words">
+      <li>Jupyter</li>
+      <li>LEAF</li>
+    </ul>
+  </div>
+
+  <script>
+    const gridData = [
+      ['', 'P', 'P', 'L', 'E', 'O', 'R', 'T'],
+      ['X', 'B', 'C', 'D', 'T', 'R', 'E', 'E'],
+      ['L', 'E', 'A', 'F', 'Y', 'X', 'Y', 'Z'],
+      ['J', 'U', 'Y', 'Z', 'K', 'L', 'M', 'N'],
+      ['P', 'Q', 'R', 'S', 'T', 'U', 'A', 'W'],
+      ['P', 'Q', 'R', 'S', 'T', 'U', 'R', 'W'],
+      ['P', 'Q', 'R', 'S', 'T', 'U', 'S', 'W']
+    ];
+
+    const wordSearchGrid = document.getElementById('wordSearchGrid');
+    const wordsToFind = ['Maca', 'Arvore', 'Terra','MARS'];
+
+    // Populate the grid
+    gridData.forEach((row, rowIndex) => {
+      row.forEach((letter, colIndex) => {
+        const cell = document.createElement('div');
+        cell.textContent = letter;
+        cell.classList.add('cell');
+        cell.dataset.row = rowIndex;
+        cell.dataset.col = colIndex;
+        cell.addEventListener('click', () => {
+          cell.classList.toggle('highlight');
+        });
+        wordSearchGrid.appendChild(cell);
+      });
+    });
+  </script>
+</body>
+</html>
